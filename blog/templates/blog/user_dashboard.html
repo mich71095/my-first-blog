@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+
+<div class="col-md-12 box user-dash " data-spy="affix" data-offset-top="100" >
+	<div class="row" ><img class="user-small-pic" src="{% static 'img/anonymous.png' %}" width="70" height="70" ></div>
+	<div class="col-md-12 text-center"><p>{{ user.username }}</p></div>
+	<div class="col-md-12">following</div>
+	<div class="col-md-12">followers</div>
+	<hr>
+	<div class="col-md-12"><a href="{% url 'post_new' %}" >New Post</a></div>
+	<div class="col-md-12"><a>notification</a></div>
+	<div class="col-md-12"><a>logout</a></div>
+</div>

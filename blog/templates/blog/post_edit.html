@@ -1,9 +1,64 @@
 {% extends 'blog/base.html' %}
 
+
+
 {% block content %}
+{% if user.is_authenticated %}
+	<div class="col-md-10">
 	<h1>New post</h1>
-	<form method="POST" class="post-form">{% csrf_token %}
+
+	<!--<form method="POST">{% csrf_token %}
+		{{ form.media }}
 		{{ form.as_p }}
-		<button type="submit" class="save btn btn-default">Save</button>
+				<button type="submit" class="save btn btn-default">Save</button>
+
+	</form>-->
+
+
+
+
+
+	<form method="POST" class="post-form">{% csrf_token %}
+
+
+
+<!--//			<div class="row">
+                <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                   
+                    <div class="ibox-content no-padding">
+
+                        <div class="summernote box">
+                          
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div> //-->
+
+
+             
+            <div class="col-md-12 text-center"><h3>{{ form.title.label_tag }}</h3></div>
+            <div class="col-md-12 ">{{ form.title }}</div>
+            <hr>
+            <div class="col-md-12 text-center"><h3>{{ form.text.label_tag }}</h3></div>
+            <div class="col-md-12 text-to-render">
+     
+            {{ form.text|safe }}
+
+            </div>
+            <hr>
+  
+      
+		<button type="submit" class="save btn btn-default" id="summer" onclick="myFunction()">Save</button>
+
 	</form>	
+	</div>
+	<script type="text/javascript">
+		$('p[name="text"]').html($('#summernote').code());
+       $('#summernote').code($('textarea').text());
+
+	</script>
+{% endif %}
 {% endblock %}

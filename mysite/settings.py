@@ -25,7 +25,7 @@ SECRET_KEY = '_irtm1w8z1xcs@g9l1@$v5$)74pq*znhjeaixa52ckwc0%kkai'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'michael.mutieke.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'michael.blog.com']
 
 
 # Application definition
@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    #'django-ckeditor',
+    #'ckeditor',
+    #'ckeditor_uploader',
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -74,10 +78,21 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}'''
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'djangoblog',
+        'USER': 'ike',
+        'PASSWORD': 'ike_kill',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -143,3 +158,29 @@ try:
     from .local_settings import *
 except ImportError:
     pass
+
+
+#summernote
+SUMMERNOTE_CONFIG = {
+    'width': '100%',
+    'height': '480',
+    'styleWithTags': True,
+    'attachment_require_authentication': True,
+    
+    
+}
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+#summernoteEXCLUDE_FROM_MINIFYING = ('summernote/upload_attachment/',)
+'''CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_FILENAME_GENERATOR = 'utils.get_filename'
+
+CKEDITOR_CONFIGS = {
+    'default' : {
+            'toolbar': None,
+    },
+}'''
+

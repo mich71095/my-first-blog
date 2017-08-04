@@ -1,6 +1,12 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
+
+
+<p>{{ post.content|safe }}</p>
+
+
+<div class="col-md-10">
     <div class="post">
         {% if post.published_date %}
     		<div class="date">
@@ -14,7 +20,7 @@
         	<a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
         {% endif %}
         <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <p class="render-text-area">{{ post.text|linebreaksbr }}</p>
     </div>
     <hr>
     <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk  %}">Add comment</a>
@@ -35,4 +41,6 @@
 	{% empty %}
     		<p>No comments here yet :(</p>
 	{% endfor %}
+	</div>
+
 {% endblock %}

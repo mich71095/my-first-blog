@@ -1,21 +1,40 @@
-from django.shortcuts import render
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
 from .models import Post, Comment
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, RegisterAccountForm
 
-from django.contrib.auth import logout
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
-def logout_view(request):
-	logout(request)
-	return redirect('post_list')
+def first(request):
+	return render(request, 'blog/first_html.html')
 
-
-def post_list(request):
+def index(request):
 	posts = Post.objects.filter(published_date__lte=timezone.now())
-	return render(request, 'blog/post_list.html', {'posts': posts})
+	temp = []
+	for post in posts:
+		temp.append(post)
+	return render(request, 'blog/index.html', {'posts':posts},{'temp':temp},)
+
+def register_account(request):
+	if request.method == 'POST':
+		form = RegisterAccountForm(request.POST)
+		if form.is_valid():
+			form.save()
+			username = form.cleaned_data.get('username')
+			raw_password = form.cleaned_data.get('password1')
+			user = authenticate(username=username, password=raw_password)
+			login(request, user)
+			return redirect('post_list')
+	else:
+		form = RegisterAccountForm()
+	return render(request, 'registration/register.html', {'form': form})
+
+'''def post_list(request):
+	posts = Post.objects.filter(published_date__lte=timezone.now())
+	return render(request, 'blog/index.html', {'posts': posts})'''
 
 def post_detail(request, pk):
 	post = get_object_or_404(Post, pk=pk)

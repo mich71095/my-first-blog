@@ -1,14 +1,21 @@
-{% extends 'blog/base.html' %}
 
-	{% block content %}
+<div class="col-md-12 box" > 
+<button onclick="myFunction()">Try it</button>
+			
             {% for post in posts %}
-            <div class="post">
-                    <div class="date">
+            
+            
+             <div class="col-md-12"><h1>I am here</h1></div>
+            
+            <div class="col-md-12 post">
+                    <div class="col-md-12 date">
                         {{ post.published_date }}
                     </div>
-                    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-                    <p>{{ post.text|linebreaksbr }}</p>
-                    <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
-                </div>
+                    <div class="col-md-12"><h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1></div>
+                    <div class="col-md-12"><p class="render-text-area">{{ post.text|linebreaksbr|safe }}</p></div>
+                    <div class="col-md-12"><a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a></div>
+            </div>
+       
             {% endfor %}
-    {% endblock %}
+
+</div>
