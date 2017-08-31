@@ -1,66 +1,296 @@
 {% load staticfiles %}
 
 <html>
-    <head>
-        <title>Django Girls blog</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-		<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
-		<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Django blog</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  <!--<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">-->
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animate.css' %}">
 
+
+<!-- <link rel="stylesheet" href="{% static 'css/cropper.min.css' %}" >
         <!--<link href="{% static 'css/summernote/summernote.css' %}" rel="stylesheet">
         <link href="{% static 'css/summernote/summernote-bs3.css' %}" rel="stylesheet"> -->
 
 
-    </head>
-   <body>
+      </head>
+      <body>
 
-    <div class="col-md-12 page-header ">
-        {% if user.is_authenticated %}
-            <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
-            <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-            <a href="{% url 'logout' %}" class="top-menu"><span class="glyphicon glyphicon-log-out"></span></a>
-        {% else %}
-            <h3><a href="{% url 'login' %}" class="top-menu">Log-in</a></h3>
-            <h3><a href="{% url 'register_account' %}" class="top-menu">Create</a></h3>
-        {% endif %}
-        <h1><a href="/">Django Blog</a></h1>
-    </div>
+       
 
-     {% if user.is_authenticated %}
-     <div class=" row main">
-     <div class="col-md-2"  >{% include 'blog/user_dashboard.html' %}</div>
-    
-    {% block content %}
-    {% endblock %}
-</div>
 
-    {% else %}
-<div class="row main">
-<div class="col-md-9">
-{% include 'blog/post_list.html' %}
-</div>
-<div class="col-md-3">
-    
-{% include 'blog/about_us.html' %}
-</div>
-</div>
- {% endif %}
+
+
+
+
+
+
+
+
+       {% block content %}
+         {% endblock %}
       
-   <script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
+
+
+
+
+
+
+
+
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+      <!--       <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script> -->
+
+
+      <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+
+
+
+      <script>
+
+
+
+
+
+//upload ultiple image
+/*$("#imgupload").on('change', function(){
+        var imgItem = $(this)[0].files;
+        var imgCount = $(this)[0].files.length;
+        var imgPath = $(this)[0].value;
+        var imgExt = imgPath.substring(imgPath.lastIndexOf('.')+1).toLowerCase();
+        var imgPreview = $('#imgpreview');
+        imgPreview.empty();
+        if(imgExt == 'gif' || imgExt == 'png' || imgExt == 'jpg' || imgExt == 'jpeg' || imgExt == 'bmp'){
+            if(typeof(FileReader) != "undefined"){
+                for(var i=0; i<imgCount; i++){
+                    var reader = new FileReader();
+                    var fn = imgItem[i].name;
+                    var fs = imgItem[i].size;
+                    var ft = imgItem[i].type;
+                    reader.onload = function(e){
+                        $("<img />", {
+                            "src": e.target.result,
+                            "width": "150",
+                            "class": "imgClass",
+                            "title": fn +" and size "+ fs +" bytes and type "+ ft,
+                            "alt": fn +" and size "+ fs +" bytes and type "+ ft
+                        }).appendTo(imgPreview);
+                    }
+                    imgPreview.show();
+                    reader.readAsDataURL($(this)[0].files[i]);
+                }
+            } else {
+                imgPreview.html("browser ono tik");
+            }
+        } else {
+            imgPreview.html("File format");
+        }
+    });*/
+
+
+
+function preview(){
+  var preview = document.querySelector('img#pre');
+  var file    = document.querySelector('input[class=previewImage]').files[0];
+  previewFile(preview,file);
+
+}
+
+function previewUser(){
+  var preview = document.querySelector('img#preUser');
+  var file    = document.querySelector('input[class=previewImageUser]').files[0];
+  previewFile(preview,file);
+
+}
+
+function previewUserCover(){
+  var preview = document.querySelector('img#preUserCover');
+  var file    = document.querySelector('input[class=previewImageUserCover]').files[0];
+  previewFile(preview,file);
+}
+
+
+
+function previewFile(preview,file) {
+  //var preview = document.querySelector();
+  //var file    = document.querySelector('input[class=previewImage]').files[0];
+  var reader  = new FileReader();
+
+  reader.addEventListener("load", function () {
+    preview.src = reader.result;
+  }, false);
+
+  if (file) {
     
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
-
-     
+    reader.readAsDataURL(file);
+    
+  }
+}
 
 
-    <script>
+/*
+function previewFile() {
+  var preview = document.querySelector('img');
+  var file    = document.querySelector('input[type=file]').files[0];
+  var reader  = new FileReader();
+
+  reader.addEventListener("load", function () {
+    preview.src = reader.result;
+  }, false);
+
+  if (file) {
+    
+    reader.readAsDataURL(file);
+    alert('hi');
+  }
+}*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $(function(){
+          $("h2")
+        //  .wrapInner("span")
+        $("h2 br")
+        .before("<span class='spacer'>")
+        .after("<span class='spacer'>")
+        });
+
+         $('p.render-text-area').html($('.render-text-area').text());
+
+
+
+
+       
+
+
+      /*  $("button.button-edit-user").click(function(){
+            $("div.user-info").css('display', 'none');
+            $("div.user-info-edit").css('display', 'block');
+
+
+            $("img.user-small-pic-profile").hover(
+            function(){
+            $("button.user-profile").css("display","block");
+            }
+        });*/
+
+
+         $("button.button-edit-user").click(function(){
+            $("div.user-info").css('display', 'none');
+            $("div.user-info-edit").css('display', 'block');
+
+
+           
+         
+            $("div.user-profile-upload").css("display","block");
+            $("div.user-profile-upload-cover").css("display","block");
+            $(this).css('display', 'none');
+            
+        });
+
+
+      /*  $("img.user-small-pic-profile").hover(function(){
+          $(".user-small-pic-profile").css('color', 'red');
+        });*/
+ 
+
+
+
+          // Disable function
+jQuery.fn.extend({
+    disable: function(state) {
+        return this.each(function() {
+            this.disabled = state;
+        });
+    }
+});
+
+
+
+         $("button.post-likes").click(function(){
+             // $("button#heart-icon").css("color","#000");
+               // $( this ).toggleClass( "heart-icon" );
+               // $("button.post-dislikes").disable(true);
+
+
+                $( this ).toggleClass( "heart-icon" );
+              //  $("button.post-dislikes").disable(true);
+
+
+
+
+// Disabled with:
+//$('input[type="submit"], input[type="button"], button').disable(true);
+
+
+
+            });
+
+        $("button.post-dislikes").click(function(){
+             // $("button#heart-icon").css("color","#000");
+         $( this ).toggleClass( "heart-icon" );
+        // $("button.post-likes").disable(true);
+
+
+            });
+
+
+         /*$("img.user-small-pic-profile").hover(
+            function(){
+            $("button.user-profile").css("display","block");
+            }, function(){
+                $("button.user-profile").css("display","none");
+            }
+        );*/
+
+
+
+/*$(".title_app").hover(function(){
+  $(this).toggleClass("animated shake");
+});
+
+$(".post").hover(function(){
+  $(this).toggleClass("animated bounce");
+});*/
+
+
+
+           /* $("button#heart-icon-not").click(function(){
+             
+              $("button#heart-icon-not").css("color","#f55567");
+
+            });*/
+
+
+
+
+
+
+
+ 
         //$('.render-text-area').html($('.render-text-area').text());
        // $('p.render-text-area').html();
 
@@ -74,30 +304,46 @@
         else{
             $('p.render-text-area').text().hide();
         }
-*/
+        */
 
 
 
-        function myFunction() {
+//       function myFunction() {
 
-            var posts = "{{ posts }}";
+/*var posts = "{{ posts }}";
             var temp = "{{ temp }}";
 
-            var str = $('p.render-text-area').html();
 
-           // alert(posts);
+            function decodeHtml(html) {
+            var txt = document.createElement("textarea");
+                txt.innerHTML = html;
+                return txt.value;
+            }
+            */
+
+            //var str = $('p#render-text-area').text();
+            //var content = $('p.render-text-area').html();
+            //var strDecode = $.parseHTML( str );
+            //var s = decodeHtml(content);
+           
+            //var r = 
+           // var w = $('.render-text-area').summernote('code');
+          // alert(posts);
             //for (i = 0; i < 3; i++) { 
-               alert("temp here "+temp+" posts here"+posts);
+              // alert("hi-"+str);
               //  }
 
-     
-        }
-     
+
+
+
+
+  //      }
+
       /*  if($('p.render-text-area').text()){
             $('p.render-text-area').text();
         }if($('p.render-text-area').html($('p.render-text-area').text())){
             $('p.render-text-area').html($('p.render-text-area').text());
-        }*/
+          }*/
 
        /* $(document).ready(function(){
 
@@ -108,7 +354,7 @@
 
        $('textarea[name="text"]').html($('#summernote').code());
        $('#summernote').code($('textarea').text());
-         */
+       */
 
        /* var edit = function() {
             $('.click2edit').summernote({focus: true});
@@ -116,11 +362,85 @@
         var save = function() {
             var aHTML = $('.click2edit').code(); //save HTML If you need(aHTML: array).
             $('.click2edit').destroy();
-        };*/
-    </script>
+          };*/
+        </script>
     <!--<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
     <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
-<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>-->
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>-->
 
-</body>
-</html>
+
+
+<script type="text/javascript">
+    $('body').on('click', function(){
+    // Init
+    var rand = Math.floor((Math.random()*100)+1);
+    var flows = ["flowOne", "flowTwo", "flowThree"];
+    var colors = ["colOne", "colTwo", "colThree", "colFour", "colFive", "colSix"];
+    var timing = (Math.random()*(1.3-1.0)+1.0).toFixed(1);
+    // Animate Particle
+    $('<div class="particle part-'+rand+' '+colors[Math.floor((Math.random()*6))]+'" style="font-size:'+Math.floor(Math.random()*(30-22)+22)+'px;"><i class="fa fa-heart-o"></i><i class="fa fa-heart"></i></div>').appendTo('.particle-box').css({animation: ""+flows[Math.floor((Math.random()*3))]+" "+timing+"s linear"});
+    $('.part-'+rand).show();
+    // Remove Particle
+    setTimeout(function(){
+        $('.part-'+rand).remove();
+    }, timing*1000-100);
+});
+</script>
+
+
+
+<script type="text/javascript">
+    /* like counting*/ 
+    $(document).ready(function() {
+        $('.post-likes').click(function() {
+
+            var id;
+            id = $(this).attr('data-post-id');
+            $.get('/like-blog/', {
+                post_id: id
+            }, function(data) {
+                $('.like_count_blog').html(data);
+            });
+
+
+           
+
+
+
+        });
+
+         $('.post-dislikes').click(function() {
+
+            var id;
+            id = $(this).attr('data-post-id');
+            $.get('/dislike-blog/', {
+                post_id: id
+            }, function(data) {
+                $('.dislike_count_blog').html(data);
+            });
+
+
+           
+
+
+
+        });
+
+
+
+
+
+    });
+
+
+
+
+
+
+</script>
+
+
+
+
+  </body>
+  </html>

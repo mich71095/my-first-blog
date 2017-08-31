@@ -2,10 +2,23 @@
 
 
 
+
 {% block content %}
 {% if user.is_authenticated %}
+
+
+<!--<input type="file" onchange="previewFile()"><br>
+<img src="" height="200" alt="Image preview..." class="pre">
+-->
+
+<div class="col-md-1"></div>
 	<div class="col-md-10">
-	<h1>New post</h1>
+
+        {% if edit %}
+        <div class="col-md-12 text-center"><h1 class="create-post">Edit Post</h1></div>
+        {% else %}
+	   <div class="col-md-12 text-center"><h1 class="create-post">Create New Post</h1></div>
+        {% endif %}
 
 	<!--<form method="POST">{% csrf_token %}
 		{{ form.media }}
@@ -18,47 +31,65 @@
 
 
 
-	<form method="POST" class="post-form">{% csrf_token %}
+	<form method="POST" class="post-form" role="form" enctype="multipart/form-data">{% csrf_token %}
 
 
 
-<!--//			<div class="row">
-                <div class="col-lg-12">
-                <div class="ibox float-e-margins">
-                   
-                    <div class="ibox-content no-padding">
-
-                        <div class="summernote box">
-                          
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            </div> //-->
 
 
              
+             <div class="col-sm-offset-2 col-sm-10">
+            <span class="text-danger small">{{ form.errors }}</span>
+           </div>
+           <div class="col-md-12 text-center"><h3>{{ form.post_description.label_tag }}</h3></div>
+           <div class="col-md-12" >{{ form.post_description }}</div> 
+           <div class="col-md-12 text-center"><h3>{{ form.cover_pic.label_tag }}</h3></div>
+           <div class="col-md-12 ">
+           <div class="col-md-12 " width="100%" height="40%">
+
+           {% if edit %}
+           <img src="{{  form.instance.cover_pic.url }}" height="200" alt="Image preview..." id="pre" width="100%" height="40%">
+           {% else %}
+           
+           <img src="" height="200" alt="Image preview..." id="pre" width="100%" height="40%">
+           {% endif %}
+            </div></div>
+           
+            <div class="col-md-12 " style="margin-left: 15px;">{{ form.cover_pic }}</div> 
             <div class="col-md-12 text-center"><h3>{{ form.title.label_tag }}</h3></div>
             <div class="col-md-12 ">{{ form.title }}</div>
             <hr>
             <div class="col-md-12 text-center"><h3>{{ form.text.label_tag }}</h3></div>
-            <div class="col-md-12 text-to-render">
+            <div class="col-md-12"><p>
      
-            {{ form.text|safe }}
+            {{ form.text|safe }}</p>
 
             </div>
             <hr>
-  
       
-		<button type="submit" class="save btn btn-default" id="summer" onclick="myFunction()">Save</button>
+    
+<!--
+
+        {% for field in form %}
+        <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <span class="text-danger small">{{ field.errors }}</span>
+        </div>
+        <label class="control-label col-sm-2" >{{ field.label_tag }}</label>
+        <div class="col-sm-10">{{ field }}</div>
+    </div>
+        {% endfor %}
+        -->
+      
+		<button type="submit" class="save btn btn-default" >Save</button>
 
 	</form>	
 	</div>
-	<script type="text/javascript">
-		$('p[name="text"]').html($('#summernote').code());
-       $('#summernote').code($('textarea').text());
 
-	</script>
+    <div class="col-md-1"></div>
+	
+
+
+
 {% endif %}
 {% endblock %}

@@ -1,13 +1,35 @@
 {% load staticfiles %}
 
 
-<div class="col-md-12 box user-dash " data-spy="affix" data-offset-top="100" >
-	<div class="row" ><img class="user-small-pic" src="{% static 'img/anonymous.png' %}" width="70" height="70" ></div>
-	<div class="col-md-12 text-center"><p>{{ user.username }}</p></div>
-	<div class="col-md-12">following</div>
-	<div class="col-md-12">followers</div>
+<div class="  user-dash "  >
+	<div class="col-md-12" >
+
+	<a href="{% url 'profile' pk=user.id %}">
+
+	{% if user.profile.edit_status  %}
+		<img  class="img-circle user-small-pic-profile-index " id="preUser" src="{{  user.profile.user_profile_pic.url }}" style="display: block;" >
+
+		{% else %}
+		<img  class="img-circle user-small-pic-profile-index "  id="preUser" src="{% static 'img/ragna.png' %}"  style="display: block;" >
+		{% endif %}
+
+
+</a>
+
+
+
+	
+	</div>
+	<div class="col-md-12 text-center a"><a href="{% url 'profile' pk=user.id %}">
+		<p> @{{ user.username }} </p>
+		
+		</a></div>
+
+	<div class="col-md-12  a"><hr><a href="#">following</a></div>
+	<div class="col-md-12  a"><a href="#">followers</a></div>
 	<hr>
-	<div class="col-md-12"><a href="{% url 'post_new' %}" >New Post</a></div>
-	<div class="col-md-12"><a>notification</a></div>
-	<div class="col-md-12"><a>logout</a></div>
+	<div class="col-md-12  a"><a href="{% url 'post_new' %}" >new post</a></div>
+	<div class="col-md-12  a"><a href="#">notification</a></div>
+	<div class="col-md-12  a"><a href="{% url 'logout_user' %}" >logout</a></div>
+	<div class="col-md-12"><br></div>
 </div>

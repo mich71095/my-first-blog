@@ -1,0 +1,337 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+
+
+ <div class="col-md-12 page-header ">
+        
+        <h3  class="title_app "><a href="/"><font size="">Blog</font></a></h3>
+         
+
+
+
+
+
+
+          
+        </div>
+
+
+
+<div class="col-md-12">
+
+
+{{ profile_form.errors }}
+
+
+<!-- user info -->
+	<div class="col-md-12 user-top " >
+		<div class="row" >
+
+			{% if user.profile.edit_status  %}
+			 <img src="{{  profile_form.instance.user_cover_pic.url }}"  id="preUserCover" width="100%" height="60%" style="display: block;">
+			{% else %}
+			<img  src="{% static 'img/back2.png' %}" id="preUserCover" width="100%" height="60%" style="display: block;"> 
+			{% endif %}
+
+			
+			
+		 	
+		</div>
+
+
+
+<div class="col-md-12 ">
+		<div class="col-md-12 img-usr"   >
+
+		{% if user.profile.edit_status  %}
+		<img  class="img-circle user-small-pic-profile " id="preUser" src="{{  profile_form.instance.user_profile_pic.url }}" style="display: block;"   >
+
+		{% else %}
+		<img  class="img-circle user-small-pic-profile "  id="preUser" src="{% static 'img/ragna.png' %}"  style="display: block;"  >
+		{% endif %}
+
+
+
+		<div class="col-md-3"></div>
+		</div>
+		<div class="col-md-3">{% ifequal user.username|stringformat:"s" request.user.username  %}
+	<div class="row "><button class="button-edit-user"><span class="glyphicon glyphicon-pencil"></span>Edit</button></div>
+	{% endifequal %}</div>
+		<div class="col-md-9 box-profile-top">
+
+		<div class="col-md-2 "><p>@{{ user.username }}</p> </div>
+		<div class="col-md-2 "><p>followers: {{ user.profile.followers }}</p> </div>
+		<div class="col-md-2 "><p>following: {{ user.profile.following }}</p> </div>
+		<div class="col-md-2 "><p># of posts: {{ posts.count }}</p> </div>
+		
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal 
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+    
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+
+         <form method="POST" class="post-form" role="form" enctype="multipart/form-data">{% csrf_token %}
+        <div class="modal-body">
+       
+          <p>Some text in the modal. {{ profile_form.user_profile_pic }}</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="save btn btn-default" >Save</button>
+
+        </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+
+		<!-- end user info -->
+	
+
+
+
+<div class="col-md-1"></div>
+
+
+
+
+<div class="col-md-3 user-small-info" >
+
+<div class="col-md-12">{{ profile_form.errors }}  {{ profile_form.non_field_errors }}</div>
+
+	<div class="user-info" style="display: line-block ">
+	
+
+	<div class="col-md-12 text-center"><br><br><p>{{ user.profile.about_me }}</p><hr> </div>
+	
+	<div class="col-md-12"><p>name: <strong>{{ user.get_full_name }}</strong> </p></div>
+	<div class="col-md-12"><p>email: <strong>{{ user.email }}</strong></p></div>
+		<div class="col-md-12"><p>gender: <strong>{{ user.profile.gender }}</strong></p> </div>
+		
+		<div class="col-md-12"><p>birthday: <strong>{{ user.profile.birth_date }}</strong> </p></div>
+		<div class="col-md-12"><p>hometown: <strong>{{ user.profile.location }}</strong></p></div>
+		<div class="col-md-12"><p>currently lives: <strong>{{ user.profile.lives }}</strong>  </p></div>
+		<div class="col-md-12"><p>status: <strong>{{ user.profile.status }}</strong></p></div>
+		
+		<div class="col-md-12"><p>school: <strong>{{ user.profile.studied }}</strong> </p></div>
+		<div class="col-md-12"><p>profession: <strong>{{ user.profile.profession }}</strong> </p></div>
+		<div class="col-md-12"><p>language: <strong>{{ user.profile.language }}</strong> </p></div>
+		<div class="col-md-12"><p>motto: <strong>{{ user.profile.motto }}</strong></p> </div>
+		</div>
+
+<div class="user-info-edit" style="display: none">
+	<form method="POST" class="post-form" role="form" enctype="multipart/form-data">{% csrf_token %}
+
+	<div class="col-md-9 user-profile-upload-cover" style="display: none;">
+		 		{{ profile_form.user_cover_pic }}
+	</div>	 
+
+	<div class="col-md-9 user-profile-upload" style="display: none;">{{ profile_form.user_profile_pic }}</div>
+
+
+	<div class="col-md-12">{{ profile_form.errors }} {{ profile_form.non_field_errors }}</div>
+
+	<div class="col-md-12 text-center"><p>{{ profile_form.about_me }}</p><hr> </div>
+	
+	<div class="col-md-12"><p>{{ user_non_admin_form.username }} </p></div>
+	<div class="col-md-12"><p>{{ user_non_admin_form.first_name }} </p></div>
+	<div class="col-md-12"><p>{{ user_non_admin_form.last_name }}</p></div>
+	
+	<div class="col-md-12"><p>{{ user_non_admin_form.email }}</p></div>
+		<div class="col-md-12"><p>{{ profile_form.gender }}</p> </div>
+		
+		<div class="col-md-12"><p>{{ profile_form.birth_date }} </p></div>
+		<div class="col-md-12"><p>{{ profile_form.location }}</p></div>
+		<div class="col-md-12"><p>{{ profile_form.lives }}  </p></div>
+		<div class="col-md-12"><p>{{ profile_form.status }}</p></div>
+		<div class="col-md-12"><p>{{ profile_form.studied }} </p></div>
+		<div class="col-md-12"><p>{{ profile_form.profession }} </p></div>
+		<div class="col-md-12"><p>{{ profile_form.language }} </p></div>
+		<div class="col-md-12"><p>{{ profile_form.motto }}</p> </div>
+		<div class="col-md-6 "><button type="submit" class="btn btn-default fit-button" >Cancel</button></div>
+		<div class="col-md-6 "><button type="submit" class="btn btn-success fit-button" >Save Changes</button></div>
+
+		</form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+	 <!-- Modal 
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+     
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+
+
+
+
+
+
+
+          <form method="POST" class="post-form" role="form" enctype="multipart/form-data">{% csrf_token %}
+
+
+
+
+
+             
+             <div class="col-sm-offset-2 col-sm-10">
+            <span class="text-danger small">{{ profile_form.errors }}</span>
+           </div>
+           <div class="col-md-12 text-center"><h3>{{ profile_form.bio.label_tag }}</h3></div>
+           <div class="col-md-12">{{ profile_form.bio }}</div> 
+           
+
+            </div>
+            <hr>
+      
+
+		<button type="submit" class="save btn btn-default" >Save</button>
+
+	</form>
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+
+
+
+  </div>
+ 
+
+
+</div>-->
+
+
+
+
+
+
+<div class="col-md-7">
+	<p></p><br>
+	<div class="col-md-12" id="post-list-user-prof" width=100px >
+
+
+		{% include 'blog/post_list.html' %}
+
+	</div>
+	
+</div>
+
+<div class="col-md-1"></div>
+
+</div>
+
+<!--
+
+<div class="col-md-12">
+
+  <div class="col-md-12">{{ user.username }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a></div>
+  <div class="col-md-12">{{ user.first_name }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a></div>
+  <div class="col-md-12">{{ user.last_name }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a> </div>
+  <div class="col-md-12">{{ user.email }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a> </div>
+  <div class="col-md-12">{{ user.profile.gender }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a> </div>
+  <div class="col-md-12">{{ user.profile.bio }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a> </div>
+  <div class="col-md-12">{{ user.profile.location }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a> </div>
+  <div class="col-md-12">{{ user.profile.birth_date }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a> </div>
+  <div class="col-md-12">{{ user.profile.lives }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a> </div>
+  <div class="col-md-12">{{ user.profile.status }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a></div>
+  <div class="col-md-12">{{ user.profile.work }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a></div>
+  <div class="col-md-12">{{ user.profile.studied }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a></div>
+  <div class="col-md-12">{{ user.profile.profession }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a></div>
+  <div class="col-md-12">{{ user.profile.language }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a></div>
+  <div class="col-md-12">{{ user.profile.motto }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a></div>
+  <div class="col-md-12">{{ user.profile.about_me }} <a class="btn btn-default" href=""><span class="glyphicon glyphicon-pencil"></span></a></div>
+
+</div>
+
+<div class="col-md-12">
+<form method="post">
+  {% csrf_token %}
+  {{ user_form.as_p }}
+  {{ profile_form.as_p }}
+
+  <button type="submit">Save changes</button>
+</form>
+</div>
+-->
+
+{% endblock %}

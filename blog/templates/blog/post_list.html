@@ -1,21 +1,61 @@
 
-<div class="col-md-12 box" > 
-<button onclick="myFunction()">Try it</button>
-			
-            {% for post in posts %}
+<div> 
+
+    
+    {% for post in posts %}
+
+    <div class="row post">
+
+         <div class="col-md-6 author">
+           
+            <div class="col-md-6"><p>by: {{ post.author }}</p></div>
+        </div>
+    
+        <div class="col-md-6 date ">
+           <p>posted on {{ post.published_date }}</p>
+        </div>
+
+        <div class="col-md-12  image-post "> 
+            <a href="{% url 'post_detail' pk=post.pk %}">
+                <img  src="/media/{{ post.cover_pic }}" width="100%" height="35%">
             
-            
-             <div class="col-md-12"><h1>I am here</h1></div>
-            
-            <div class="col-md-12 post">
-                    <div class="col-md-12 date">
-                        {{ post.published_date }}
-                    </div>
-                    <div class="col-md-12"><h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1></div>
-                    <div class="col-md-12"><p class="render-text-area">{{ post.text|linebreaksbr|safe }}</p></div>
-                    <div class="col-md-12"><a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a></div>
+            <h2 class="title-post-list text-center"><span class="spacer">{{ post.title }}</span></h2>
+            </a>
+        </div>
+        <div class="col-md-12 text-center " id="post_desc">
+            <p>{{ post.post_description }}</p>
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="col-md-2"><strong>{{ post.likes }}</strong> Likes</div>
+          
+            <div class="col-md-2"><strong>{{ post.dislikes }}</strong> Dislikes</div>
+            <div class="col-md-3">
+                <a href="{% url 'post_detail' pk=post.pk %}">
+                    <strong>{{ post.approved_comments.count }}</strong> Comments 
+                </a>
             </div>
-       
-            {% endfor %}
+           
+        </div>
+
+    
+
+    </div>
+
+
+
+        {% empty %}
+        <p>No Results</p>
+
+        {% endfor %}
+       <!-- <div class="col-md-12 see-more text-center" ><button >See More ...</button></div>
+        <div class="col-md-12"> <hr> </div> -->
+
+
+
+    
+        
+   
 
 </div>

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     #'ckeditor',
     #'ckeditor_uploader',
     'django_summernote',
+    'hitcount',
 ]
 
 MIDDLEWARE = [
@@ -92,7 +93,7 @@ DATABASES = {
         'USER': 'ike',
         'PASSWORD': 'ike_kill',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '5432',
     }
 }
 
@@ -144,7 +145,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 #django tutorial in heroku
-import dj_database_url
+'''import dj_database_url
 
 DATABASES['default'] = dj_database_url.config()
 
@@ -157,13 +158,13 @@ DEBUG = False
 try:
     from .local_settings import *
 except ImportError:
-    pass
+    pass'''
 
 
 #summernote
 SUMMERNOTE_CONFIG = {
     'width': '100%',
-    'height': '480',
+    'height': '600',
     'styleWithTags': True,
     'attachment_require_authentication': True,
     
