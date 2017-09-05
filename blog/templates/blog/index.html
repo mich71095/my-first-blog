@@ -1,69 +1,45 @@
 {% extends 'blog/base.html' %}
-
-
-
 {% block content %}
 
- <div class="col-md-12 page-header ">
-        
-        <h3  class="title_app "><a href="/"><font size="">Blog</font></a></h3>
-          <div class="col-md-6 search">{% include 'blog/search.html' %}</div>
-
-
-
-
-
-
-          
-        </div>
-
-
+<div class="col-md-12 page-header ">
+  <h3  class="title_app ">
+    <a href="/">
+      <font size="">Blog</font>
+    </a>
+  </h3>
+  <div class="col-md-6 search">{% include 'blog/search.html' %}</div>
+</div>
 
 <div class="col-md-12"><br></div>
- {% if user.is_authenticated %}
-        <div class=" row main">
-        <div class="col-md-12 index-about-us">
-         <div class="col-md-3 user-dash-top"  >{% include 'blog/user_dashboard.html' %}</div>
-         <div class="col-md-6" id="post-list-user" >
-         <!--<div class="col-md-12 ">{% include 'blog/search.html' %}</div>-->
-         <div class="col-md-12">{% include 'blog/post_list.html' %}</div>
-         </div>
-         </div>
-
-        <!--<div class="col-md-3" >{% include 'blog/sidebar.html' %}</div>-->
-        
-       </div>
-
-       {% else %}
-
-       
-       <div class="row main">
-       <div class="col-md-12 index-about-us">
-       <div class="col-md-3 "  >
-       	<!--	<div class="col-md-12 about-us-header box" data-spy="affix" data-offset-top="90"  ><h3 class="text-center"><strong >Django</strong></h3></div>-->
-          <div class="box" > {% include 'blog/about_us.html' %}</div>
-         <!-- <div class=" box "> {% include 'blog/search.html' %} </div>-->
-        </div>
-        <div class="col-md-6 " id="post-list">
-        	<!--<div class="col-md-12 search-box" data-spy="affix" data-offset-top="90">{% include 'blog/search.html' %}</div>-->
-          <div class="col-md-12">{% include 'blog/post_list.html' %}</div>
-        </div>
-       
-        <div class="col-md-3 right-side" >
-  
-          <div>{% include 'registration/login.html' %}</div>
-          <div>&nbsp<h3 class="text-center"><font size="4px">or</font></h3></div>
-          <div>{% include 'registration/register.html' %}</div>
-
-          
-        </div> 
-        </div>
+ 
+{% if user.is_authenticated %}
+<div class=" row main">
+  <div class="col-md-12 index-about-us">
+    <div class="col-md-3 user-dash-top"  >{% include 'blog/user_dashboard.html' %}</div>
+    <div class="col-md-6" id="post-list-user" >
+      <div class="col-md-11">{% include 'blog/post_list.html' %}</div>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="row main">
+  <div class="col-md-12 index-about-us">
+    <div class="col-md-3 "  >
+      <div class="box" > {% include 'blog/about_us.html' %}</div>
+    </div>
+    <div class="col-md-6 " id="post-list">
+      <div class="col-md-12">{% include 'blog/post_list.html' %}</div>
+    </div>   
+    <div class="col-md-3 right-side" >
+      <div>{% include 'registration/login.html' %}</div>
+      <div>&nbsp
+        <h3 class="text-center">
+          <font size="4px">or</font>
+        </h3>
       </div>
-      {% endif %}
-
-
-
-
-
-
+      <div>{% include 'registration/register.html' %}</div>
+    </div> 
+  </div>
+</div>
+{% endif %}
 {% endblock %}

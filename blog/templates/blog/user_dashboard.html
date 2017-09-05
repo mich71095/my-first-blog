@@ -1,29 +1,21 @@
 {% load staticfiles %}
-
-
 <div class="  user-dash "  >
 	<div class="col-md-12" >
+		<a href="{% url 'profile' pk=user.id %}">
+			{% if user.profile.edit_status  %}
+				<img  class="img-circle user-small-pic-profile-index " id="preUser" src="{{  user.profile.user_profile_pic.url }}" style="display: block;" >
 
-	<a href="{% url 'profile' pk=user.id %}">
-
-	{% if user.profile.edit_status  %}
-		<img  class="img-circle user-small-pic-profile-index " id="preUser" src="{{  user.profile.user_profile_pic.url }}" style="display: block;" >
-
-		{% else %}
-		<img  class="img-circle user-small-pic-profile-index "  id="preUser" src="{% static 'img/ragna.png' %}"  style="display: block;" >
-		{% endif %}
-
-
-</a>
-
-
-
-	
+			{% else %}
+				<img  class="img-circle user-small-pic-profile-index "  id="preUser" src="{% static 'img/ragna.png' %}"  style="display: block;" >
+			{% endif %}
+		</a>
 	</div>
-	<div class="col-md-12 text-center a"><a href="{% url 'profile' pk=user.id %}">
-		<p> @{{ user.username }} </p>
-		
-		</a></div>
+	
+	<div class="col-md-12 text-center a">
+		<a href="{% url 'profile' pk=user.id %}">
+			<p> @{{ user.username }} </p>
+		</a>
+	</div>
 
 	<div class="col-md-12  a"><hr><a href="#">following</a></div>
 	<div class="col-md-12  a"><a href="#">followers</a></div>

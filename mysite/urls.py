@@ -21,12 +21,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    #url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
     url(r'', include('blog.urls')),
-    url(r'^summernote/', include('django_summernote.urls')),
-   #url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-    
+    url(r'^summernote/', include('django_summernote.urls')),  
 ]
 
 

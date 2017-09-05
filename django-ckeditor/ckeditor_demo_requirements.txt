@@ -1,5 +1,0 @@
-django
-django-js-asset
-Pillow
-selenium
-tox

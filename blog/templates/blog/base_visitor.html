@@ -1,0 +1,104 @@
+{% load staticfiles %}
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Michael Sy </title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}">
+  <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+</head>
+
+<body>
+  <div class="col-md-1"></div>
+  <div class="col-md-10 ">
+    <div class="col-md-12">
+      <img  class="user-me-cover" src="{% static 'img/full_stack_developer.jpg' %}" id="preUserCover" height="50%"> 
+    </div>
+    <div class="col-md-12 profile-con"></div>
+    <div class=" col-md-12 post">
+      
+      <div class="col-md-12"><img  class="img-circle user-me " src="{% static 'img/pro.jpg' %}"  ></div>
+      <div class="col-md-12 profile-content text-center">
+
+        <hr>
+        <h3>About me</h3>
+        <p>
+          <br>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+         
+          Hi! This is Michael Prato Sy. A Computer Science graduating student at University of Southeastern Philippines(USeP). He is interested in new modern technologies and eager to learn it as he can. He knows some programming languages and choose python language to master. He is interested to work on python programming as a web developer, full stack or software engineer. And he is a newbie to the industry yet.
+          <br>
+          <br>7 facts about Michael:
+          <br>He is not related to Henry Sy and he considered his family as poor
+          <br>He likes music in all genre and most of it are pop, electro, bluesrock, and metal
+          <br>He likes to code especially around with programmer/coder/developer because it motivate him and develop his skills.
+          <br>He likes hearing peoples opinion and feedback especially the bad ones so he can adjust
+          <br>He is aware that there are much to learn about softwares and his eager to research and learn them all as he can
+          <br>He is always conscious about his coding. 
+          <br>He knows that there are many things yet to be discover about himself
+          <br>
+         </p>
+
+         <hr>
+         <h3 >Education</h3>
+         <p >
+           <br>Bachelor of Science in Computer Science
+            <br>University of Southeastern Philippines
+            <br>Undergraduate | 2 Incomplete(INC) Subjects | 1 Enrolled Subject - THESIS 
+         </p>
+         <hr>
+         <h3 >Technical Knowledge</h3><br>
+         <p >html | css | javascript | jquery | django | python | php | c/c++ | java | Android programming | postgresql | mysql | git</p>
+         <p >ubuntu | windows</p>
+         <hr>
+         <h3 >Experience</h3><br>
+         <p >Michael has a previous part-time job as a data entry at DSWD - listahanan during his 3rd yr. college.   
+         <br>He has no experience yet in the industry in related to programming. 
+         <br>The biggest school project he had experienced so far was his intern at PNP Crime Laboratory Region XI known as SOCO along with his group mates.
+         <br>SOCO used paper to process their data in their 5 divisions and the goal of our team in the project was to automated their data process. 
+         <br>Michael was the back-end of the project but unfortunately his the only one can code that much so he did most of the work.
+         <br>The project uses html, css, javascript, jquery , mysql and php.
+         <br>We use php here because django was later introduce to us.
+         <br>The system is called PNP Crime Lab Region XI Information System
+         <br>Unfortunately the system was not implement and deploy because the soco has a new nationwide online system based on manila.
+         <br>Sample screenshoots of the System
+         <br><img id="ex-pic" src="{% static 'img/ss_soco/fingerprint/soco.png' %}" height="30%" width="30%">
+         <br><img id="ex-pic" src="{% static 'img/ss_soco/fingerprint/fingerprint_overview_1.png' %}" height="30%" width="30%">
+         <br><img id="ex-pic" src="{% static 'img/ss_soco/fingerprint/fingerprint_addrecord_1.png' %}" height="30%" width="30%">
+
+         <br><img id="ex-pic" src="{% static 'img/ss_soco/fingerprint/fingerprint_generateReport_to_submit_case_2.png' %}" height="30%" width="30%">
+         <br><img id="ex-pic" src="{% static 'img/ss_soco/fingerprint/fingerprint_report_generated.png' %}" height="30%" width="30%">
+         <br><img id="ex-pic" src="{% static 'img/ss_soco/fingerprint/fingerprint_search.png' %}" height="30%" width="30%">
+         <br>
+         <br>
+         </p>
+         <hr>
+         <h3 >Contact</h3><br>
+         <p >
+          facebook: <a href="https://www.facebook.com/michael.sy.0101005754">
+                      https://www.facebook.com/michael.sy.0101005754
+                    </a> 
+          <br>
+          github: <a href="https://github.com/mich71095">
+                    https://github.com/mich71095
+                  </a> 
+          <br>
+          email: michaelpsy71095@gmail.com
+         </p>
+         <hr>
+         <h2>Coding with Django</h2><br>
+         <p ><a href="{% url 'index' %}">My First Blog</a></p>
+         <p ><a href="https://github.com/mich71095/my-first-blog">Click here for source code in github</a></p>
+      </div>      
+    </div>
+  </div>
+  <div class="col-md-1"></div>  
+</body>
+</html>

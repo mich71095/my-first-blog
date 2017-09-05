@@ -1,202 +1,160 @@
-		{% extends 'blog/base.html' %}
-
-		{% block content %}
- <div class="col-md-12 page-header ">
-        
-        <h3  class="title_app "><a href="/"><font size="">Blog</font></a></h3>
-         
-
-
-
-
-
-
-          
-        </div>
-
+{% extends 'blog/base.html' %}
+{% block content %}
+<div class="col-md-12 page-header ">
+	<h3  class="title_app ">
+		<a href="/">
+			<font size="">Blog</font>
+		</a>
+	</h3>
+</div>
 
 <div class="col-md-1"></div>
-		<div class="col-md-10 container-fluid post post-d">
 
-
-
-
-
-			<div class="">
-
-				<div class="col-md-12">
-				<div class="col-md-7 views"><p>Number of Views:</p>
-				{# the primary key for the hitcount object #}
-				{{ hitcount.pk }}
-
-				{# the total hits for the object #}
-				{{ hitcount.total_hits }}
-
-				{# whether or not the hit for this request was counted (true/false) #}
-				{{ hitcount.hit_counted }}
-
-				{# the message form the UpdateHitCountResponse #}
-				{{ hitcount.hit_message }}
-
-
-
-
-				</div>
-				
-				{% if post.published_date %}
-						
-
-				<div class="col-md-5 date"><p>updated on {{ post.published_date }}</p></div>
-				{% else %}
-				<a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
-				{% endif %}
-				</div>
-
-
-				{% ifequal post.author|stringformat:"s" request.user.username  %}
-				<div class="row"> 
-                <img  src="/media/{{ post.cover_pic }}" width="100%" height="40%">
-        </div>
-				<div class="col-md-12  text-center"><h1 class="post-title">{{ post.title }}</h1><p>by: <a href="{% url 'profile' pk=post.author.pk %}">{{  post.author }}</a></p>
-
-						<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-						<a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-
-
-				</div>
-				{% else %}
-				<div class="row"> 
-                <img  src="/media/{{ post.cover_pic }}" width="100%" height="40%">
-        </div>
-
-				<div class="col-md-12  text-center"><h1 class="post-title">{{ post.title }}</h1><p>by: 
-				<a href="{% url 'profile' pk=post.author.pk %}">{{  post.author }}</a></p></div>
-				{% endifequal %}
-				
-				<div class="col-md-12 "><hr><p class="render-text-area">{{ post.text|linebreaksbr }}</p></div>
-				
-
+<div class="col-md-10 container-fluid post post-d">
+	<div class="">
+		<div class="col-md-12">
+			<div class="col-md-7 views">
+				<p>Number of Views:</p>
 			</div>
 
-
-			{% if user.is_authenticated %}
-			<div class="col-md-12"><div class="col-md-12"><hr></div>
-				{% if liked %}
-				<div class="col-md-2"><button class="post-likes heart-icon" values="like"  id="" data-post-id="{{ post.id }}" ><strong  class="like_count_blog">{{ post.likes }}</strong> Likes</button></div>
-
-				
-				{% else %}
-				<div class="col-md-2"><button   class="post-likes " values="not-like"  id="" data-post-id="{{ post.id }}"><strong  class="like_count_blog">{{ post.likes }}</strong> Likes</button></div>
-
-				
-				{% endif %}
-
-				{% if disliked %}
-
-
-				<div class="col-md-2"><button class="post-dislikes heart-icon" values="dislike"  id="" data-post-id="{{ post.id }}" ><strong  class="dislike_count_blog">{{ post.dislikes }}</strong> Dislikes</button></div>
-				{% else %}
-				<div class="col-md-2"><button   class="post-dislikes " values="not-like"  id="" data-post-id="{{ post.id }}"><strong  class="dislike_count_blog">{{ post.dislikes }}</strong> Dislikes</button></div>
-				{% endif %}
-				
-				
-				<div class="col-md-2"><strong>{{ post.shares }}</strong> Shares</div>
+			{% if post.published_date %}
+			<div class="col-md-5 date">
+				<p>updated on {{ post.published_date }}</p>
 			</div>
 			{% else %}
-			<div class="col-md-12"> <div class="col-md-12"><hr></div>
-				<div class="col-md-2"><strong>{{ post.likes }}</strong> Likes</div>
-				
-				<div class="col-md-2"><strong>{{ post.dislikes }}</strong> Dislikes</div>
-				<div class="col-md-2"><strong>{{ post.shares }}</strong> Shares</div>
-			</div>
+			<a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
 			{% endif %}
-			
-
-			
-
-
-
-			<div class="col-md-12 ">
-			<div class="col-md-12"><hr/></div>
-
-			
-
-			{% for comment in post.comments.all %}
-
-			{% if comment.approved_comment %}
-					
-			
-			<div class="comment ">
-				<div class="col-md-9"> <strong>{{ comment.author }}</strong></div>
-				<div class="col-md-3 date">{{ comment.created_date }}</div>
-				<div class="col-md-1"></div>
-				<div class="col-md-11 comment-text  ">
-					
-						<p>{{ comment.text|linebreaks }}</p>
-
-				</div>
-			</div>
-			<div><p>&nbsp</p></div>
-			{% endif %}
-
-
-
-
-			{% ifequal post.author|stringformat:"s" request.user.username  %}
-			
-					{% if not comment.approved_comment %}
-						<div class="comment">
-						<div class="col-md-7 "> <p><strong>{{ comment.author }}</strong></p></div>
-
-						<div class="col-md-5 date-comment ">
-						{{ comment.created_date }}
-							
-
-						<a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-						<a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
-
-						</div>
-				
-						<div class="col-md-12 comment-text " ><p >{{ comment.text|linebreaks }}</p></div>
-						<div class="col-md-12"><hr></div>
-						</div>
-					{% endif %}
-					
-				
-			{% endifequal %}
-
-
-			{% empty %}
-			<div class="col-md-12" style="padding-top: 10px;">	<p>No comments here yet :(</p></div>
-			{% endfor %}
-			</div>
-
-
-
-
-
-			<div class="col-md-12" style="padding-top: 10px;"><div class="col-md-12"><hr></div>
-				<form method="POST" role="form" class="post-form">{% csrf_token %}
-					
-					{% if user.is_authenticated %}
-						<div class="col-md-1 "><p><strong>{{ request.user.username }}:</strong></p></div>
-					{% else %}
-						<div class="col-md-1 "><p><strong>Anonymous:</strong></p></div>
-					{% endif %}
-					
-					<div class="col-md-11">{{ form.text }}</div>
-		
-				
-					<div class="col-md-12" style="padding-bottom: 10px;"><button type="submit" class="save 
-					btn btn-default">Comment</button></div>
-				</form>
-			</div> 
-
-
-
 		</div>
 
 
+		{% ifequal post.author|stringformat:"s" request.user.username  %}
+		<div class="row"> 
+			<img  src="/media/{{ post.cover_pic }}" width="100%" height="50%">
+		</div>
+		<div class="col-md-12  text-center">
+			<h1 class="post-title">{{ post.title }}</h1>
+				<p>by: <a href="{% url 'profile' pk=post.author.pk %}">{{  post.author }}</a></p>
+				<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+				<a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+		</div>
+		{% else %}
+		<div class="row"> 
+			<img  src="/media/{{ post.cover_pic }}" width="100%" height="50%">
+		</div>
+		<div class="col-md-12  text-center">
+			<h1 class="post-title">{{ post.title }}</h1>
+			<p>by: <a href="{% url 'profile' pk=post.author.pk %}">{{  post.author }}</a></p>
+		</div>
+		{% endifequal %}
+
+		<div class="col-md-12 "><hr><p class="render-text-area">{{ post.text|linebreaksbr }}</p></div>
+
+	</div>
 
 
-		{% endblock %}
+	{% if user.is_authenticated %}
+	<div class="col-md-12">
+		<div class="col-md-12"><hr></div>
+		{% if liked %}
+		<div class="col-md-2">
+			<button class="post-likes heart-icon" values="like"  id="" data-post-id="{{ post.id }}" >
+				<strong  class="like_count_blog">{{ post.likes }}</strong> Likes
+			</button>
+		</div>
+
+		{% else %}
+		<div class="col-md-2">
+			<button class="post-likes " values="not-like"  id="" data-post-id="{{ post.id }}">
+				<strong  class="like_count_blog">{{ post.likes }}</strong> Likes
+			</button>
+		</div>
+		{% endif %}
+
+		{% if disliked %}
+		<div class="col-md-2">
+			<button class="post-dislikes heart-icon" values="dislike"  id="" data-post-id="{{ post.id }}" >
+				<strong  class="dislike_count_blog">{{ post.dislikes }}</strong> Dislikes
+			</button>
+		</div>
+		{% else %}
+		<div class="col-md-2">
+			<button   class="post-dislikes " values="not-like"  id="" data-post-id="{{ post.id }}">
+				<strong  class="dislike_count_blog">{{ post.dislikes }}</strong> Dislikes
+			</button>
+		</div>
+		{% endif %}
+		<div class="col-md-2">
+			<strong>{{ post.shares }}</strong> Shares
+		</div>
+	</div>
+	{% else %}
+	<div class="col-md-12"> 
+		<div class="col-md-12"><hr></div>
+			<div class="col-md-2"><strong>{{ post.likes }}</strong> Likes</div>
+			<div class="col-md-2"><strong>{{ post.dislikes }}</strong> Dislikes</div>
+			<div class="col-md-2"><strong>{{ post.shares }}</strong> Shares</div>
+	</div>
+	{% endif %}
+
+	<div class="col-md-12 ">
+		<div class="col-md-12"><hr/></div>
+		{% for comment in post.comments.all %}
+				{% if comment.approved_comment %}
+					<div class="comment ">
+						<div class="col-md-9"> <strong>{{ comment.author }}</strong></div>
+						<div class="col-md-3 date">{{ comment.created_date }}</div>
+						<div class="col-md-1"></div>
+						<div class="col-md-11 comment-text"><p>{{ comment.text|linebreaks }}</p></div>
+					</div>
+					<div><p>&nbsp</p></div>
+				{% endif %}
+
+				{% ifequal post.author|stringformat:"s" request.user.username  %}
+						{% if not comment.approved_comment %}
+								<div class="comment">
+									<div class="col-md-7 "> <p><strong>{{ comment.author }}</strong></p></div>
+									<div class="col-md-5 date-comment ">
+										{{ comment.created_date }}
+										<a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}">
+											<span class="glyphicon glyphicon-remove"></span>
+										</a>
+										<a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}">
+											<span class="glyphicon glyphicon-ok"></span>
+										</a>
+									</div>
+
+									<div class="col-md-12 comment-text " ><p >{{ comment.text|linebreaks }}</p></div>
+									<div class="col-md-12"><hr></div>
+								</div>
+						{% endif %}
+				{% endifequal %}
+
+
+				{% empty %}
+				<div class="col-md-12" style="padding-top: 10px;">	<p>No comments here yet :(</p></div>
+		{% endfor %}
+		</div>
+
+		<div class="col-md-12" style="padding-top: 10px;">
+			<div class="col-md-12"><hr></div>
+				<form method="POST" role="form" class="post-form">
+					{% csrf_token %}
+					
+					{% if user.is_authenticated %}
+					<div class="col-md-1 ">
+						<p><strong>{{ request.user.username }}:</strong></p>
+					</div>
+					{% else %}
+					<div class="col-md-1 ">
+						<p><strong>Anonymous:</strong></p>
+					</div>
+					{% endif %}
+					<div class="col-md-11">{{ form.text }}</div>
+					
+					<div class="col-md-12" style="padding-bottom: 10px;">
+						<button type="submit" class="save btn btn-default">Comment</button>
+					</div>
+				</form>
+		</div> 
+</div>
+{% endblock %}

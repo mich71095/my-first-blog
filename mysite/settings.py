@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     #'ckeditor',
     #'ckeditor_uploader',
     'django_summernote',
-    'hitcount',
+    #'hitcount',
 ]
 
 MIDDLEWARE = [

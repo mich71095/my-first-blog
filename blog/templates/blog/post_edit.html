@@ -1,95 +1,51 @@
 {% extends 'blog/base.html' %}
-
-
-
-
 {% block content %}
+<div class="col-md-12 page-header ">
+  <h3  class="title_app ">
+    <a href="/">
+      <font size="">Blog</font>
+    </a>
+  </h3>
+</div>
+
 {% if user.is_authenticated %}
+<div class="col-md-1"></div>
+<div class="col-md-10 top-title">
+  {% if edit %}
+  <div class="col-md-12 text-center"><h1 class="create-post">Edit Post</h1><hr></div>
+  {% else %}
+  <div class="col-md-12 text-center"><h1 class="create-post">Create New Post</h1><hr></div>
+  {% endif %}
 
+  <form method="POST" class="post-form" role="form" enctype="multipart/form-data">{% csrf_token %}
+    <div class="col-sm-offset-2 col-sm-10">
+      <span class="text-danger small">{{ form.errors }}</span>
+    </div>
+    <div class="col-md-12 text-center"><h3>{{ form.post_description.label_tag }}</h3></div>
+    <div class="col-md-12" >{{ form.post_description }}</div> 
+    <div class="col-md-12 text-center"><h3>{{ form.cover_pic.label_tag }}</h3></div>
+    <div class="col-md-12 ">
+      <div class="col-md-12 " width="100%" height="40%">
+      {% if edit %}
+        <img src="{{  form.instance.cover_pic.url }}" height="200" alt="Image preview..." id="pre" width="100%" height="60%">
+      {% else %}
+        <img src="" height="200" alt="Image preview..." id="pre" width="100%" height="60%">
+      {% endif %}
+      </div>
+    </div>
 
-<!--<input type="file" onchange="previewFile()"><br>
-<img src="" height="200" alt="Image preview..." class="pre">
--->
+   <div class="col-md-12 " style="margin-left: 15px;">{{ form.cover_pic }}</div> 
+   <div class="col-md-12 text-center"><h3>{{ form.title.label_tag }}</h3></div>
+   <div class="col-md-12 ">{{ form.title }}</div>
+   <hr>
+   <div class="col-md-12 text-center"><h3>{{ form.text.label_tag }}</h3></div>
+   <div class="col-md-12"><p>{{ form.text|safe }}</p></div>
+   <hr>
+   <button type="submit" class="save btn btn-default" >Save</button>
+
+  </form>	
+</div>
 
 <div class="col-md-1"></div>
-	<div class="col-md-10">
-
-        {% if edit %}
-        <div class="col-md-12 text-center"><h1 class="create-post">Edit Post</h1></div>
-        {% else %}
-	   <div class="col-md-12 text-center"><h1 class="create-post">Create New Post</h1></div>
-        {% endif %}
-
-	<!--<form method="POST">{% csrf_token %}
-		{{ form.media }}
-		{{ form.as_p }}
-				<button type="submit" class="save btn btn-default">Save</button>
-
-	</form>-->
-
-
-
-
-
-	<form method="POST" class="post-form" role="form" enctype="multipart/form-data">{% csrf_token %}
-
-
-
-
-
-             
-             <div class="col-sm-offset-2 col-sm-10">
-            <span class="text-danger small">{{ form.errors }}</span>
-           </div>
-           <div class="col-md-12 text-center"><h3>{{ form.post_description.label_tag }}</h3></div>
-           <div class="col-md-12" >{{ form.post_description }}</div> 
-           <div class="col-md-12 text-center"><h3>{{ form.cover_pic.label_tag }}</h3></div>
-           <div class="col-md-12 ">
-           <div class="col-md-12 " width="100%" height="40%">
-
-           {% if edit %}
-           <img src="{{  form.instance.cover_pic.url }}" height="200" alt="Image preview..." id="pre" width="100%" height="40%">
-           {% else %}
-           
-           <img src="" height="200" alt="Image preview..." id="pre" width="100%" height="40%">
-           {% endif %}
-            </div></div>
-           
-            <div class="col-md-12 " style="margin-left: 15px;">{{ form.cover_pic }}</div> 
-            <div class="col-md-12 text-center"><h3>{{ form.title.label_tag }}</h3></div>
-            <div class="col-md-12 ">{{ form.title }}</div>
-            <hr>
-            <div class="col-md-12 text-center"><h3>{{ form.text.label_tag }}</h3></div>
-            <div class="col-md-12"><p>
-     
-            {{ form.text|safe }}</p>
-
-            </div>
-            <hr>
-      
-    
-<!--
-
-        {% for field in form %}
-        <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <span class="text-danger small">{{ field.errors }}</span>
-        </div>
-        <label class="control-label col-sm-2" >{{ field.label_tag }}</label>
-        <div class="col-sm-10">{{ field }}</div>
-    </div>
-        {% endfor %}
-        -->
-      
-		<button type="submit" class="save btn btn-default" >Save</button>
-
-	</form>	
-	</div>
-
-    <div class="col-md-1"></div>
-	
-
-
-
 {% endif %}
 {% endblock %}
