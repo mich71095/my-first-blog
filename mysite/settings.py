@@ -145,7 +145,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 #django tutorial in heroku
-'''import dj_database_url
+import dj_database_url
 
 DATABASES['default'] = dj_database_url.config()
 
@@ -158,7 +158,7 @@ DEBUG = False
 try:
     from .local_settings import *
 except ImportError:
-    pass'''
+    pass
 
 
 #summernote
