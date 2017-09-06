@@ -16,3 +16,9 @@ urlpatterns = [
     url(r'^comment/(?P<pk>\d+)/remove/$', views.comment_remove, name='comment_remove'),
     url(r'^logout_user/$', views.logout_user, name='logout_user'),
 ]
+
+if settings.SERVE_MEDIA_FILES:
+    urlpatterns += patterns('',
+        url(r'^%s(?P<path>.*)$' % settings.MEDIA_URL.lstrip('/'),
+            'django.views.static.serve',
+            {'document_root': settings.MEDIA_ROOT}),)

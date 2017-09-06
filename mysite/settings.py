@@ -180,7 +180,7 @@ SUMMERNOTE_CONFIG = {
 }
 
 
-
+SERVE_MEDIA_FILES = True
 #summernoteEXCLUDE_FROM_MINIFYING = ('summernote/upload_attachment/',)
 '''CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "pillow"
