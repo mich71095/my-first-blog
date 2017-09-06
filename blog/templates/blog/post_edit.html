@@ -1,11 +1,25 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-<div class="col-md-12 page-header ">
-  <h3  class="title_app ">
-    <a href="/">
-      <font size="">Blog</font>
-    </a>
-  </h3>
+<div class="col-md-12 page-header">
+<nav class="navbar navbar-inverse ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <h3  class="title_app ">
+        <a href="/">
+          <font size="">Django Blog</font>
+        </a>
+      </h3>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href=""></a></li>
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="{% url 'profile_me' %}">Profile</a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+    </ul>
+  
+  </div>
+</nav>
 </div>
 
 {% if user.is_authenticated %}

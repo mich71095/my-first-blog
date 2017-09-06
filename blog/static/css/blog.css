@@ -202,7 +202,6 @@ div h1.post-title {
 }
 
 .page-header {
-    background-color: #444446;
     margin: 0;
     padding: 0;
     position: fixed;
@@ -230,7 +229,6 @@ div h1.post-title {
 }
 
 .main {
-    margin-right: 5px;
 }
 
 .index-about-us{
@@ -445,14 +443,13 @@ input[name=q] {
 
 
 .right-side {
-    right: 10px;
+    right: 5%;
     position: fixed;
-    margin-top: -25px;
+    margin-top: 4%;
 }
 
 .about-us-header, #about-us , .user-dash{
-    padding: 0 10px 0 10px;
-    margin-left: 19px; 
+
     border-top-right-radius: 5px;
 
 }
@@ -571,20 +568,18 @@ p.results{
 }
 
 #post-list{
+    margin-top: 5.3%;
     top: 0;
     padding-right: 5px;
-    margin-left: 50px;
     height: 80%;
-    width: 45%;
     
 }
 
 #post-list-user{
-    left: 300px;
-    padding-right: 5px;
-    margin-left: 50px;
+    left: 24%;
     height: 90%;
     width: 60%;
+    margin-top: 4.3%;
     
 }
 
@@ -602,7 +597,6 @@ p.results{
     width: 20%;
     height: 250px;
     margin-top: 60px;
-    margin-left: 63px;
 
     
 }
@@ -610,7 +604,7 @@ p.results{
 .user-dash-top{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 20%;
-    margin-left: 30px;
+    margin-top: 5%;
     position: fixed;
 }
 

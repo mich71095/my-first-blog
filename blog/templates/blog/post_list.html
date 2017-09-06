@@ -15,7 +15,7 @@
 
     <div class="col-md-12">
       <div class="col-md-2"><strong>{{ post.likes }}</strong> Likes</div>
-      <div class="col-md-2"><strong>{{ post.dislikes }}</strong> Dislikes</div>
+      <div class="col-md-3"><strong>{{ post.dislikes }}</strong> Dislikes</div>
       <div class="col-md-3">
         <a href="{% url 'post_detail' pk=post.pk %}">
           <strong>{{ post.approved_comments.count }}</strong> Comments 
