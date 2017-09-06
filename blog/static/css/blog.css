@@ -541,8 +541,8 @@ input[name=q] {
 
 
 
-#or {
-    font-family: 'Lobster', cursive;
+.or {
+    padding-top: 1%;    
 }
 
 p.results{

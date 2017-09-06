@@ -1,5 +1,5 @@
-<div class="container-fluid">
-  <div class="">
+<div class="">
+  <div class="col-md-12">
     <h3 class="text-center">Create an Account</h3>
     <form method="post"  role="form">{% csrf_token %}
       {% for field in user_non_admin_form %}
@@ -16,5 +16,4 @@
     </div>
    </form>
   </div>
-  <div class="col-md-4"></div>
 </div>
