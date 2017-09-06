@@ -74,8 +74,9 @@ img.user-small-pic{
 
 img.user-me-cover {
     position: fixed;
-    width: 81%;
-    left: 9.5%;
+    width: 83.3%;
+    left: 8.35%;
+    
 }
 
 img#ex-pic {
@@ -88,14 +89,13 @@ img#ex-pic:hover {
 } 
 
 img.user-me {
+    z-index: 1;
     display: block;
     margin: auto;
     width: 15%;
-    height: 170px;
     background-color: #000000;
     left: 43%;
     position: absolute;
-    top: -90px;
     border: 1px solid white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -212,10 +212,8 @@ div h1.post-title {
 }
 
 
-.profile-content {
-    padding-top: 10%;
-
-
+.profile-info{
+    margin-top: 20%;
 }
 
 .top-title {
@@ -290,6 +288,22 @@ div h1.post-title {
 
 .post-d{
     padding-top: 80px;
+}
+
+.profile-content {
+    padding-bottom: 50px
+    margin-bottom: 20px;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-info-info {
+    margin-top: 8.8%;
+    background-color: #ffffff; 
+}
+
+.hr-top {
+    margin-top: 15%;
 }
 
 .post {
@@ -384,6 +398,8 @@ div h1.post-title {
     padding-top: 20px;
     top: 30px;
 }
+
+
 
 input[name=q] {
     width: 100%;
