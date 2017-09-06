@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="{% static 'css/animate.css' %}">
 </head>
 
-<div class="col-md-12 page-header">
-<nav class="navbar navbar-inverse">
+<div class="col-md-12 page-header navbar-inverse">
+<nav class="navbar ">
     <div class="container-fluid">
 
         <!-- Header -->
@@ -69,6 +69,8 @@
 </nav>
 </div>
 <body>  {% block content %} {% endblock %}
+
+<div class="footer"><strong>Serving Media File in Heroku: FAILED!</strong>.</div>
       
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

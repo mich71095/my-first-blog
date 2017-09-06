@@ -286,9 +286,6 @@ div h1.post-title {
     margin-right: 28px;
 }
 
-.post-d{
-    padding-top: 80px;
-}
 
 .profile-content {
     padding-bottom: 50px
@@ -434,7 +431,7 @@ input[name=q] {
 .user-top {
     border: 1px solid rgba(0,0,0,0.1);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-top: 60px;
+   
 }
 
 .about-us-header {
@@ -447,7 +444,7 @@ input[name=q] {
 .right-side {
     right: 5%;
     position: fixed;
-    margin-top: 4%;
+    margin-top: 2%;
 }
 
 .about-us-header, #about-us , .user-dash{
@@ -539,7 +536,19 @@ input[name=q] {
     padding-left: 6.3%;
 }
 
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #ce0e0e;
+  text-align: center;
+}
 
+.footer strong {
+    color: #fffb00;
+}
 
 .or {
     padding-top: 1%;    
@@ -590,9 +599,9 @@ p.results{
 }
 
 .user-dash-top{
+    margin-top: 5%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 20%;
-    margin-top: 6.6%;
     position: fixed;
     height: 80%;
 }
