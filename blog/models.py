@@ -1,15 +1,16 @@
 from django.db import models
 from django.utils import timezone
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver	
-import datetime
+
 
 class Post(models.Model):
 	author = models.ForeignKey('auth.User')
 	title = models.CharField(max_length=200)
 	text = models.TextField()
-	created_date = models.DateTimeField(default=datetime.datetime.now())
+	created_date = models.DateTimeField(default=datetime.now, blank=True)
 	published_date = models.DateTimeField(blank=True, null=True)
 	cover_pic = models.ImageField(upload_to='post/')
 	post_description = models.TextField(max_length=500, blank=True)
@@ -42,7 +43,7 @@ class Comment(models.Model):
 	post = models.ForeignKey('blog.Post', related_name='comments')
 	author = models.CharField(max_length=200)
 	text = models.TextField()
-	created_date = models.DateTimeField(default=datetime.datetime.now())
+	created_date = models.DateTimeField(default=datetime.now, blank=True)
 	approved_comment = models.BooleanField(default=False)
 
 	def approve(self):
@@ -54,8 +55,8 @@ class Comment(models.Model):
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	user_cover_pic = models.ImageField(null=True)
-	user_profile_pic = models.ImageField(null=True)
+	user_cover_pic = models.ImageField(null=True,upload_to='user/cover/')
+	user_profile_pic = models.ImageField(null=True,upload_to='user/profile/')
 	location = models.CharField(max_length=30, null=True)
 	birth_date = models.DateField(null=True)
 	gender = models.CharField(max_length=30, null=True)
