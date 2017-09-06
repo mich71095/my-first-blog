@@ -408,7 +408,7 @@ input[name=q] {
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
-   /* background-image: url('searchicon.png');
+   /* background-image: url('http://findicons.com/files/icons/575/pleasant/256/search.png');
     background-position: 10px 10px; 
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
@@ -560,7 +560,7 @@ input[name=q] {
 
 p.results{
     color: #ffffff;
-    margin-top: 4px;
+    margin-top: 1.2%;
 }
 
 
