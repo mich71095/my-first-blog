@@ -12,9 +12,19 @@ import sys
 
 from django.core.wsgi import get_wsgi_application
 
+
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mysite.settings")
 
 application = get_wsgi_application()
 
 from whitenoise.django import DjangoWhiteNoise
 application = DjangoWhiteNoise(application)
+
+from django.conf import settings
+from whitenoise import WhiteNoise
+application = WhiteNoise(
+    DjangoWhiteNoise(get_wsgi_application()),
+    root=settings.MEDIA_ROOT,
+    prefix='/media/',
+)

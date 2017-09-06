@@ -147,6 +147,11 @@ STATIC_URL = '/static/'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
 #django tutorial in heroku
 import dj_database_url
 
@@ -174,8 +179,7 @@ SUMMERNOTE_CONFIG = {
     
 }
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+
 
 #summernoteEXCLUDE_FROM_MINIFYING = ('summernote/upload_attachment/',)
 '''CKEDITOR_UPLOAD_PATH = "uploads/"
