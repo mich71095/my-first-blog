@@ -18,8 +18,8 @@ urlpatterns = [
     url(r'^logout_user/$', views.logout_user, name='logout_user'),
 ]
 
-if settings.SERVE_MEDIA_FILES:
-    urlpatterns += patterns('',
+'''if settings.SERVE_MEDIA_FILES:
+    urlpatterns += urlpatterns('',
         url(r'^%s(?P<path>.*)$' % settings.MEDIA_URL.lstrip('/'),
             'django.views.static.serve',
-            {'document_root': settings.MEDIA_ROOT}),)
+            {'document_root': settings.MEDIA_ROOT}),)'''
