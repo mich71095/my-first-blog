@@ -1,7 +1,7 @@
 /**{
   border: 1px solid rgba(0,0,0,0.3);
-}
-*/
+}*/
+
 
 body {
     background-color: #f3f3f4;
@@ -206,7 +206,7 @@ div h1.post-title {
     padding: 0;
     position: fixed;
     z-index: 1;
-    height: 60px;
+    height: 8%;
 
 }
 
@@ -261,8 +261,10 @@ div h1.post-title {
     float: right;
 }
 
+
+
 .title_app {
-    padding-left: 40px;
+    margin-top: 10;
 }
 
 .title_app a:hover, .title_app a:focus {
@@ -534,22 +536,10 @@ input[name=q] {
 }
 
 .search-box {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    z-index: 5;
+    padding-left: 6.3%;
 }
 
-.search {
-    left: 400px;
-    top: -40px;
-}
 
-.search-anon {
-    position: fixed;
-    width: 22%;
-    height: 250px;
-    margin-top: 245px;
-    margin-left: 20px;
-}
 
 #or {
     font-family: 'Lobster', cursive;
@@ -568,10 +558,8 @@ p.results{
 }
 
 #post-list{
-    margin-top: 5.3%;
-    top: 0;
-    padding-right: 5px;
-    height: 80%;
+    margin-top: 6.1%;
+    margin-left: 25%
     
 }
 
@@ -595,8 +583,8 @@ p.results{
 
     position: fixed;
     width: 20%;
-    height: 250px;
-    margin-top: 60px;
+    height: 40%;
+    margin-top: 8.4%;
 
     
 }
@@ -604,8 +592,9 @@ p.results{
 .user-dash-top{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 20%;
-    margin-top: 5%;
+    margin-top: 6.6%;
     position: fixed;
+    height: 80%;
 }
 
 #post_desc {
